@@ -46,6 +46,35 @@ Q: What is v8
             database connections, api calls, etc. because of ECMA standards. and this is
             known as the JS runtime.
             V8 is C code.
-            Ever wonder how your JavaScript code comes to life? 🤔 We write JS, and then
-            the V8 engine translates it into machine and assembly code—also known as lowlevel code—so the machine can understand it. It's amazing how our high-level
-            scripts transform into the instructions that power our apps!
+
+
+*********************Modules EP4*******************************
+Module protect there variable and function from leaking 
+to use those variable and function need to use `module.export = fun/var name`
+and need to import where we want to use eg const fun/var name = require('path')
+
+Q: How do you make two modules work together?
+    -using a require function
+
+Q: What is the required function?
+    -In Node.js, the require() function is a built-in function that allows you to include or
+    require other modules into your main modules.
+
+Diff between        common js module        and        ES Module
+                1) module export required        1)import export
+                2)By default used by node js     2) by default used by fretwork like angular react
+                3)Older way                      3) Newer way
+                4)Synchronous                    4)async
+                5)Not strict                     5)Strict
+
+
+Synchronous vs. Asynchronous: CommonJS requires modules in a
+synchronous manner, meaning the next line of code will execute only after the
+module has been loaded. In contrast, ES modules load modules
+asynchronously, allowing for more efficient and flexible code execution. This
+distinction is a powerful feature and an important point to remember for
+interviews.
+Strict Mode: Another significant difference is that CommonJS code runs in
+non-strict mode, while ES modules execute in strict mode. This means that ES
+modules enforce stricter parsing and error handling, making them generally
+safer and more reliable.
