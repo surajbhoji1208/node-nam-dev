@@ -71,10 +71,67 @@ Diff between        common js module        and        ES Module
 Synchronous vs. Asynchronous: CommonJS requires modules in a
 synchronous manner, meaning the next line of code will execute only after the
 module has been loaded. In contrast, ES modules load modules
-asynchronously, allowing for more efficient and flexible code execution. This
-distinction is a powerful feature and an important point to remember for
-interviews.
+asynchronously, allowing for more efficient and flexible code execution. 
 Strict Mode: Another significant difference is that CommonJS code runs in
 non-strict mode, while ES modules execute in strict mode. This means that ES
 modules enforce stricter parsing and error handling, making them generally
 safer and more reliable.
+
+
+
+*********************Modules EP5*******************************
+Module in depth
+        Modules in Node.js work similarly to function scopes. When you require a file,
+    Node.js wraps the code from that file inside a function. This means that all
+    variables and functions in the module are contained within that functions
+    scope and cannot be accessed from outside the module unless explicitly
+    exported.
+        To expose variables or functions to other modules, you use module.exports . This
+    allows you to export specific elements from the module, making them
+    accessible when required elsewhere in your application.
+    All the code of a module is wrapped inside a function when you call require .
+    This function is not a regular function; its a special type known as an IIFE
+    (Immediately Invoked Function Expression). Heres how it works:
+
+
+
+   #In Node.js, before passing the code to the V8 engine, it wraps the module code inside an IIFE. The purpose of IIFE is to:
+        Immediately Invoke Code: The function runs as soon as it is defined.
+        Keep Variables and Functions Private: By encapsulating the code within the
+        IIFE, it prevents variables and functions from interfering with other parts of the
+        code. This ensures that the code within the IIFE remains independent and
+        private.
+        Using IIFE solves multiple problems by providing scope isolation and immediate
+        execution.
+Q2: How do you get access to module.exports ? Where does this
+    module come from?
+        In Node.js, when your code is wrapped inside a function, this function has a parameter named module . 
+        This parameter is an object provided by Node.js that includes module.exports .
+
+        `When you use module.exports , you're modifying the exports object of the current
+        module. Node.js relies on this object to determine what will be exported from the
+        module when it's required in another file.
+        The module object is automatically provided by Node.js and is passed as a
+        parameter to the function that wraps your code. This mechanism allows you to
+        define which parts of your module are accessible externally.`
+
+How require() Works Behind the Scenes
+     Resolving the Module
+        Node.js first determines the path of the module. It checks whether the
+        path is a local file ( ./local ), a JSON file ( .json ), or a module from the
+        node_modules directory, among other possibilities.
+     Loading the Module
+        Once the path is resolved, Node.js loads the file content based on its type.
+        The loading process varies depending on whether the file is JavaScript,
+     Wrapping Inside an IIFE
+        The module code is wrapped in an Immediately Invoked Function
+        Expression IIFE. This wrapping helps encapsulate the module's scope,
+        keeping variables and functions private to the module.
+     Code Evaluation and Module Exports
+        After wrapping, Node.js evaluates the modules code. During this
+        evaluation, module.exports is set to export the module's functionality or
+        data. This step essentially makes the module's exports available to other
+        files.
+     Caching(very imp)
+        Importance: Caching is crucial for performance. Node.js caches the result
+        of the require() call so that the module is only loaded and executed once.
