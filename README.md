@@ -135,3 +135,43 @@ How require() Works Behind the Scenes
      Caching(very imp)
         Importance: Caching is crucial for performance. Node.js caches the result
         of the require() call so that the module is only loaded and executed once.
+
+**************************libuv and async i/o EP6*****************************************
+Q: What type of threading does JavaScript use?
+   - JavaScript is a synchronous, single-threaded language, meaning there is only
+    one thread in which the JavaScript engine (such as the V8 engine) runs. In
+    JavaScript, code is executed line by line within this single thread.
+   - In other languages like C++ or Java, code can be executed across multiple
+    threads. For example, a portion of the code might be executed in one thread,
+    while another part runs simultaneously in a different thread. However,
+    JavaScript handles this process more straightforwardly—executing code one
+    line after the other in sequence.
+   - So, if you're executing line 2 in JavaScript, it will only run after line 1 has
+    finished executing. This is the essence of synchronous execution: each task is
+    performed one after the other, without overlap.
+
+
+                `JavaScript itself is synchronous, but with the power of Node.js, it can
+            handle asynchronous operations, allowing JavaScript to perform multiple tasks
+            concurrently.`
+Q: what are the portions inside the JS engine and How synchronous code is executed By JS Engine ?
+A:
+    The JavaScript engine operates with a single call stack, and all the code you
+    write is executed within this call stack. The engine runs on a single thread,
+    meaning it can only perform one operation at a time.
+    8In addition to the call stack, the JavaScript engine also includes a memory
+    heap. This memory heap stores all the variables, numbers, and functions that
+    your code uses.
+    One key feature of the JavaScript V8 engine is its garbage collector. The
+    garbage collector automatically identifies and removes variables that are no
+    longer in use, freeing up memory. Unlike languages like C++, where
+    developers need to manually allocate and deallocate memory, JavaScript
+    handles this process automatically. This means you don't have to worry about
+    memory management—it's all taken care of by the engine.
+
+
+    #LIBUV
+        The JS engine cannot directly access OS files, so it calls on Libuv. Libuv, being
+    very cool and full of superpowers, communicates with the OS, performs all the
+    necessary tasks, and then returns the response to the JS engine. He offloads the
+    work and does wonders behind the scene.
