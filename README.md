@@ -175,3 +175,13 @@ A:
     very cool and full of superpowers, communicates with the OS, performs all the
     necessary tasks, and then returns the response to the JS engine. He offloads the
     work and does wonders behind the scene.
+
+    ****************************Async Sync SeTimeout Crypto EP7********************************************
+    What is crypto ?
+      - The crypto module is one of the core modules provided by Node.js, similar to
+        other core modules like https , fs (file system), and zlib (used for
+        compressing files).
+      -  These core modules are built into Node.js, so when you write require('crypto') ,
+        you're importing a module that is already present in Node.js.
+        You can also import it using require('node:crypto') to explicitly indicate that it’s a
+        core module, but this is optional.
