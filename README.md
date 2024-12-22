@@ -185,3 +185,52 @@ A:
         you're importing a module that is already present in Node.js.
         You can also import it using require('node:crypto') to explicitly indicate that it’s a
         core module, but this is optional.
+
+    ****************************V8 Engine  EP8********************************************
+    HOW V8 ENGIN WORKS
+            When JavaScript code is executed, it goes through several stages in the V8
+        engine. The first stage is
+        parsing, which includes lexical analysis and tokenization. Heres how it works:
+        A) Parsing Stage: Lexical Analysis and Tokenization
+            1. Lexical Analysis
+                Purpose The main goal of lexical analysis is to break down the raw JavaScript
+                code into manageable pieces called tokens.
+            2. What is Tokenization?
+                Definition Tokenization is the process of converting code into a series of
+                tokens. Each token represents a fundamental element of the language, such
+                as keywords, operators, identifiers, and literals.
+                Why Tokenization? Tokenization helps the V8 engine to read and understand
+                the code more effectively by breaking it down into smaller, more manageable
+                pieces. This step is crucial for further analysis and compilation.
+
+            2nd Stage: Syntax Analysis and Abstract Syntax Tree (AST)
+                lexical analysis and tokenization stages, the next step in the parsing process is
+                    syntax analysis. In this stage, the tokens are converted into an Abstract Syntax
+                    Tree AST. This process is crucial for transforming the flat list of tokens into a
+                    structured representation of the code.
+
+        B) Interpreter and Compilation
+            Interpreted Languages:
+                Definition These languages are executed line by line. The interpreter reads
+                and executes the code directly, which can lead to slower execution times
+                compared to compiled languages.
+                Pros Faster to start executing code, easier to debug.
+                Cons Slower execution compared to compiled languages because of the lineby-line interpretation.
+                Episode-08 | Deep dive into v8 JS Engine 9
+                Example Python
+            Compiled Languages:
+                Definition These languages are first translated into machine code (binary
+                code) through a process called compilation. The machine code is then
+                executed by the computers hardware, leading to faster execution times.
+                Example C, C.
+                Pros Faster execution because the code is pre-compiled into machine code.
+                Cons Longer initial compilation time, more complex debugging process.
+SUMMERY:
+        1. Code is move to parsing phase 
+        2.After that it converted it into tokens with syntax analysis
+        3. Then it transform into ATS(Abstract syntax tree)
+        4. This tree then pass to interpreter called ignition interpreter
+        5. This interpreter convert the code into byte code and then code get executed
+        6. While this possess interpreter analyze some code that reuse again and again than code is forwarded to compiler called turbofan compiler
+        7. Then compiler optimism this code into machine code and again that code will get executed
+        
