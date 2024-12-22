@@ -234,3 +234,47 @@ SUMMERY:
         6. While this possess interpreter analyze some code that reuse again and again than code is forwarded to compiler called turbofan compiler
         7. Then compiler optimism this code into machine code and again that code will get executed
         
+    ****************************EVENT LOOP LIBUV  EP9********************************************
+EVENT LOOP:
+    - It allow js to perform non blocking io operation even if js is a single threaded language
+CALLBACK QUEUE:
+    - The callback queue is were callback are store after async operation are competed
+THREAD POOL:
+    - It is used to handle more time consuming task that cannot be handel with event loop without blocking it 
+
+   # The event loop in LIBUV operates in four major phases:
+     1)Timers Phase:  In this phase, all callbacks that were set using setTimeout or
+                    setInterval are executed. These timers are checked, and if their time has
+                    expired, their corresponding callbacks are added to the callback queue for
+                    execution.
+    2) Poll Phase:  After timers, the event loop enters the Poll phase, which is crucial
+                    because it handles I/O callbacks.
+    3) Check Phase: Next is the Check phase, where callbacks scheduled by the
+                    setImmediate function are executed.
+    4) Close Callbacks Phase: Finally, in the Close Callbacks phase, any callbacks
+                              associated with closing operations, such as socket closures, are handled
+
+
+Before the event loop moves to each of its main phases Timers, I/O Callbacks,Poll, Check, and Close Callbacks), it first processes any pending microtasks.
+Microtasks include tasks scheduled using
+process.nextTick() and Promise callbacks. This ensures that these tasks are handled promptly before moving on to the next phase
+
+    1- Start event loop
+    2- Process process.nextTick() callback
+            Execute all the process.nextTick() callbacks
+    3- Process promise callback
+            Execute all promises callback(microtask)
+    4- Move to timer phase
+            Execute timer callback
+    5. Move to i/o callback phase
+            Execute    i/o callbacks
+    6. Move to poll phase
+            Execute all i/o events
+    7. Move to check phase
+            Execute setImmediate callback
+    8. Move to close callback phase
+            Execute close callback
+    9. Repeat event loop cycle
+
+    #When the event loop is empty and there are no more tasks to execute, it enters the poll phase and essentially waits for incoming events
+
