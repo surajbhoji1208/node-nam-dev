@@ -278,3 +278,21 @@ process.nextTick() and Promise callbacks. This ensures that these tasks are hand
 
     #When the event loop is empty and there are no more tasks to execute, it enters the poll phase and essentially waits for incoming events
 
+    *************************************************************SEASON 2 EP 5*******************************************************************
+    1. What is middleware in Node.js?
+        Middleware is a function that has access to the req, res, and next objects in an Express.js application.
+    2.Types of Middleware 
+        Application-level middleware: Bound to the app object and used for all routes.
+        Router-level middleware: Attached to specific router instances.
+        Error-handling middleware: Takes four arguments (err, req, res, next) and handles errors.
+        Built-in middleware: Predefined middleware provided by Express (e.g., express.json()).
+        Third-party middleware: Middleware created by others, such as body-parser or morgan.
+    3. How do you handle errors in middleware?
+        app.use((err, req, res, next) => {
+          console.error(err.stack);
+          res.status(500).send('Something broke!');
+        });
+    4. What is the difference between app.use and app.get in Express.js?
+        app.use: Mounts middleware at the specified path or globally if no path is provided. It is executed for all HTTP methods.
+        app.get: Handles GET requests for the specified path and is not used for mounting middleware.
+
